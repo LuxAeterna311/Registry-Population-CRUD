@@ -2,8 +2,6 @@ package ru.akvine.PopulationRegistry.models;
 
 import javax.persistence.*;
 
-import net.bytebuddy.asm.Advice.Return;
-
 
 @Entity
 @Table(name="Person")
@@ -51,6 +49,10 @@ public class Person {
 	
 	@Column(name = "RECEIPT_DATE")
 	private String receiptDate;
+	
+	public Person() {
+		
+	}
 	
 	
 	public int getId() {

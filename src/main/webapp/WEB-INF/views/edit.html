@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	<body>
+		<div>
+			<form th:action="@{/editperson}" th:method="POST">
+				<input type="numeric" value="0" name="id">
+				<br>
+				<input type="text" value="Sanya" name="firstName">
+				<br>
+				<input type="text" value="Hi." name="secondName">
+				<br>
+				<input type="text" value=":D." name="thirdName">
+				<br>
+				<input type="numeric" value="16" name="age">
+				<br>
+				<input type="text" value = "01-01-0001" name="birthDate">
+				<button type="submit">Edit user</button>
+			</form>
+		</div>
+	</body>
+</html>

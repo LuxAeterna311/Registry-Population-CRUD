@@ -21,18 +21,41 @@ public class PersonRepositoryImpl implements PersonRepository {
 	
 	
 	static {
-		Person human = new Person();
-		human.setId(AUTO_ID.getAndIncrement());
-		human.setAge(15);
-		human.setBirthDate("2001-03-07");
-		human.setPostal("141301");
+		Person human1 = new Person();
+		human1.setId(AUTO_ID.getAndIncrement());
+		human1.setFirstName("Jack");
+		human1.setSecondName("Doom");
+		human1.setThirdName("Lul");
+		human1.setAge(23);
+		human1.setBirthDate("03-07-2001");
 		
-		people.put(human.getId(), human);
+		Person human2 = new Person();
+		human2.setId(AUTO_ID.getAndIncrement());
+		human2.setFirstName("Ivan");
+		human2.setSecondName("Gaika");
+		human2.setThirdName("Olegovich");
+		human2.setAge(16);
+		human2.setBirthDate("02-11-2005");
+		
+		Person human3 = new Person();
+		human3.setId(AUTO_ID.getAndIncrement());
+		human3.setFirstName("Acho");
+		human3.setSecondName("Vsmisle");
+		human3.setThirdName("Inoske");
+		human3.setAge(36);
+		human3.setBirthDate("21-09-1991");
+		
+		
+		
+		people.put(human1.getId(), human1);
+		people.put(human2.getId(), human2);
+		people.put(human3.getId(), human3);
 	}
 	
 	
 	@Override
 	public List<Person> getPopulationList() {
+		
 		return new ArrayList<>(people.values());
 	}
 
