@@ -1,56 +1,40 @@
 package ru.akvine.PopulationRegistry.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 
-@Entity
-@Table(name="Person")
+@Entity(name="Person")
+@Table(name="person_table", schema = "public")
 public class Person {
 	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name = "BIRTH_DATE")
-	private String birthDate;
-	
-	@Column(name = "FIRST_NAME")
+
+	@Size(min=2, max=25)
+	@Column(name = "first_name")
 	private String firstName;
 	
-	@Column(name = "SECOND_NAME")
+	@Size(min=2, max=25)
+	@Column(name = "second_name")
 	private String secondName;
 	
-	@Column(name = "THIRD_NAME")
-	private String thirdName;
-	
-	@Column(name = "AGE")
+	@Size(min = 0, max = 150)
+	@Column(name = "age")
 	private int age;
 	
-	@Column(name = "CITY")
-	private String city;
+	@Size(min=10, max=10)
+	@Column(name = "birth_date")
+	private String birthDate;
 	
-	@Column(name = "STREET")
-	private String street;
+	@Column(name="email")
+	private String email;
 	
-	@Column(name = "HOUSE_NUMBER")
-	private int houseNumber;
+	@Column(name="phone")
+	private String phone;
 	
-	@Column(name = "APARTMENT_NUMBER")
-	private int apartmentNumber;
-	
-	@Column(name = "POSTAL")
-	private String postal;
-	
-	@Column(name = "PAS_NUMBER")
-	private String pasNumber;
-	
-	@Column(name = "PAS_SERIES")
-	private String pasSeries;
-	
-	@Column(name = "RECEIPT_DATE")
-	private String receiptDate;
-	
-	public Person() {
+	Person() {
 		
 	}
 	
@@ -59,25 +43,31 @@ public class Person {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-	public String getBirthDate() {
-		return birthDate;
+	
+	public String getEmail() {
+		return this.email;
 	}
-
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
+	
+	public String getPhone() {
+		return this.phone;
+	}
+	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 
 	public String getFirstName() {
 		return firstName;
 	}
+
 
 
 	public void setFirstName(String firstName) {
@@ -85,23 +75,15 @@ public class Person {
 	}
 
 
+
 	public String getSecondName() {
 		return secondName;
 	}
 
 
+
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
-	}
-
-
-	public String getThirdName() {
-		return thirdName;
-	}
-
-
-	public void setThirdName(String thirdName) {
-		this.thirdName = thirdName;
 	}
 
 
@@ -110,106 +92,33 @@ public class Person {
 	}
 
 
+
 	public void setAge(int age) {
 		this.age = age;
 	}
 
 
-	public String getCity() {
-		return city;
+
+	public String getBirthDate() {
+		return birthDate;
 	}
 
 
-	public void setCity(String city) {
-		this.city = city;
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
-
-	public String getStreet() {
-		return street;
-	}
-
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-
-	public int getHouseNumber() {
-		return houseNumber;
-	}
-
-
-	public void setHouseNumber(int houseNumber) {
-		this.houseNumber = houseNumber;
-	}
-
-
-	public int getApartmentNumber() {
-		return apartmentNumber;
-	}
-
-
-	public void setApartmentNumber(int apartmentNumber) {
-		this.apartmentNumber = apartmentNumber;
-	}
-
-
-	public String getPostal() {
-		return postal;
-	}
-
-
-	public void setPostal(String postal) {
-		this.postal = postal;
-	}
-
-
-	public String getPasNumber() {
-		return pasNumber;
-	}
-
-
-	public void setPasNumber(String pasNumber) {
-		this.pasNumber = pasNumber;
-	}
-
-
-	public String getPasSeries() {
-		return pasSeries;
-	}
-
-
-	public void setPasSeries(String pasSeries) {
-		this.pasSeries = pasSeries;
-	}
-
-
-	public String getReceiptDate() {
-		return receiptDate;
-	}
-
-
-	public void setReceiptDate(String receiptDate) {
-		this.receiptDate = receiptDate;
-	}
 
 
 	@Override
 	public String toString() {
 		return "Person{" + id +
-				", " + this.birthDate +
 				", " + this.firstName +
 				", " + this.secondName +
-				", " + this.thirdName +
 				", " + this.age +
-				", " + this.city + 
-				", " + this.street + 
-				", " + this.houseNumber + 
-				", " + this.apartmentNumber + 
-				", " + this.postal + 
-				", " + this.pasNumber + 
-				", " + this.pasSeries +
-				", " + this.receiptDate + "}";
+				", " +  this.birthDate +
+				", " + this.email + 
+				", " + this.phone + "}";
 	}
 }

@@ -3,15 +3,15 @@
 	<head>
 		<title>Population Registry</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="../../css/style.css" type="text/css">
 	</head>
 	<body>
-		<h2>People</h2>
+		<h2 class="centered">People</h2>
 		<table>
 			<tr>
 				<th>id</th>
 				<th>First name</th>
 				<th>Second name</th>
-				<th>Third name</th>
 				<th>Age</th>
 				<th>Birth date</th>
 			</tr>
@@ -19,29 +19,25 @@
 				<td th:text="${person.getId()}"></td>
 				<td th:text="${person.getFirstName()}"></td>
 				<td th:text="${person.getSecondName()}"></td>
-				<td th:text="${person.getThirdName()}"></td>
 				<td th:text="${person.getAge()}"></td>
 				<td th:text="${person.getBirthDate()}"></td> 
 				<td><a th:href="@{'/delete/' + ${person.getId()}}">delete</a></td>
 			</tr>
 		</table>
-		<div>
-			<form th:action="@{/add}" th:method="POST">
-				<input type="text" value="Sanya" name="firstName">
-				<br>
-				<input type="text" value="Hi." name="secondName">
-				<br>
-				<input type="text" value=":D." name="thirdName">
-				<br>
-				<input type="numeric" value="16" name="age">
-				<br>
-				<input type="text" value = "01-01-0001" name="birthDate">
-				<button type="submit">Add new user</button>
+		<div class="centered">
+			<form th:action="@{/add}" th:method="GET">
+				<button type="submit">Add new person</button>
 			</form>
 		</div>
-		<div>
+		<div class="centered">
 			<form th:action="@{/edit}" th:method="GET">
-				<button type="submit">Edit user</button>
+				<button type="submit">Edit person</button>
+			</form>
+		</div>
+		<br>
+		<div class="centered">
+			<form th:action="@{/person/{id}}" th:method="GET">
+				<input type="number" name="id" placeholder="id">
 			</form>
 		</div>
 	</body>

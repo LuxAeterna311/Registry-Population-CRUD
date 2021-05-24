@@ -1,21 +1,24 @@
 package ru.akvine.PopulationRegistry.controllers;
 
 import ru.akvine.PopulationRegistry.service.PersonService;
-import ru.akvine.PopulationRegistry.service.impl.PersonServiceImpl;
+import ru.akvine.PopulationRegistry.models.DateValidator;
 import ru.akvine.PopulationRegistry.models.Person;
 
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 
 @Controller
 public class ListController {
@@ -27,34 +30,70 @@ public class ListController {
 		this.personService = personService;
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@GetMapping("/delete/{id}")
 	public String deletePerson(@PathVariable("id") int id, Model model) {
 		this.personService.deletePerson(id);
 		
-		return "redirect:/list";
+		return "redirect:/people";
 	}
 	
-	// @RequestMapping(value = "/add", method = RequestMethod.POST)
 	
-	@PostMapping("/add")
-	public String addPrson(@ModelAttribute("person") Person person) {
-		this.personService.addPerson(person);
+	@GetMapping("/add")
+	public String getAdd() {
 		
-		return "redirect:/list";
+		return "add";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editPerson() {
+	@PostMapping("/add/person")
+	public String addPerson(@Valid @ModelAttribute("person")  Person person, BindingResult result) throws Exception {
+		boolean validation = person.getFirstName().isEmpty() || person.getSecondName().isEmpty() || 
+				person.getBirthDate().isEmpty() || DateValidator.isValid(person.getBirthDate()) ;
+ 		
+		if(result.hasErrors() || validation) {
+			return "redirect:/people";
+		} else {
+			this.personService.addPerson(person);
+		}
 		
-		return "/edit";
+		return "redirect:/people";
+	}
+	
+	@GetMapping("/edit")
+	public String getEdit() {
+		
+		return "edit";
+	}
+	
+	@RequestMapping(value = "/edit/person", method = RequestMethod.POST)
+	public String editPerson(@ModelAttribute("person") Person person) {
+		try {
+			this.personService.editPerson(person);
+		} catch (Exception e) {
+			return "redirect:/people";
+		}
+		
+		return "redirect:/people";
 	}
 	
 	
-	@GetMapping("/list")
+	@GetMapping("/people")
 	public String getList(Model model) {
 		List<Person> people = personService.getPopulationList();
 		
 		model.addAttribute("people", people);
-		return "list";
+		return "people";
+	}
+	
+	@GetMapping("/index")
+	public String redirect() {
+		return "people";
+	}
+	
+	@GetMapping("/person/{id}") 
+	public String getById(@RequestParam("id") int id, Model model) {
+		Person person = this.personService.getById(id);
+		model.addAttribute("people", person);
+		
+		return "people";
 	}
 }

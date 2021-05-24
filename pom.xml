@@ -47,6 +47,28 @@
 	    <artifactId>spring-webmvc</artifactId>
 	    <version>${spring.version}</version>
 	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>9.0.10</version>
+	</dependency>
+	
 	
 	<!-- Thymeleaf -->
 	<dependency>
@@ -82,6 +104,8 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.4.31.Final</version>
 	</dependency>
+	
+		
   	
   	
 	<!-- Java Servlet API -->
@@ -91,7 +115,14 @@
 	    <version>4.0.0</version>
 	    <scope>provided</scope>
 	</dependency>
-
+	
+	<!-- Javax Validation API -->
+	<dependency>
+	    <groupId>javax.validation</groupId>
+	    <artifactId>validation-api</artifactId>
+	    <version>2.0.1.Final</version>
+	</dependency>
+	
   
     <dependency>
       <groupId>junit</groupId>

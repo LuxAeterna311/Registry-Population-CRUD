@@ -6,6 +6,7 @@ import ru.akvine.PopulationRegistry.repository.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,29 +19,34 @@ public class PersonServiceImpl implements PersonService {
 	public void setPersonRepository(PersonRepository personRepository) {
 		this.personRepository = personRepository;
 	}
-
+	
+	@Transactional
 	@Override
 	public List<Person> getPopulationList() {
 		return this.personRepository.getPopulationList();
 	}
-
+	
+	@Transactional
 	@Override
 	public void addPerson(Person person) {
 		this.personRepository.addPerson(person);
 	}
-
+	
+	@Transactional
 	@Override
 	public void deletePerson(int id) {
 		this.personRepository.deletePerson(id);
 		
 	}
-
+	
+	@Transactional
 	@Override
-	public void editPerson(Person person) {
+	public void editPerson(Person person) throws Exception {
 		this.personRepository.editPerson(person);
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public Person getById(int id) {
 		return this.personRepository.getById(id);

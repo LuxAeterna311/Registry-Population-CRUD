@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet" href="../../css/style.css" type="text/css">
+	</head>
+	<body>
+		<div class="centered">
+			<form th:action="@{/edit/person}" th:method="POST">
+				<input type="number" value="id" name="id">
+				<br>
+				<input type="text" value="Sanya" name="firstName">
+				<br>
+				<input type="text" value="Hi." name="secondName">
+				<br>
+				<input type="number" value="16" name="age">
+				<br>
+				<input type="text" value = "01-01-0001" name="birthDate">
+				<br>
+				<button type="submit">Edit person</button>
+			</form>
+		</div>
+	</body>
+</html>
+</html>

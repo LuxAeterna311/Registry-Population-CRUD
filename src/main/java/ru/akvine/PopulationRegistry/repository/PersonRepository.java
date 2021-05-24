@@ -6,6 +6,6 @@ public interface PersonRepository {
 	List<Person> getPopulationList();
 	void addPerson(Person person);
 	void deletePerson(int id);
-	void editPerson(Person person);
+	void editPerson(Person person) throws Exception;
 	Person getById(int id);
 }
